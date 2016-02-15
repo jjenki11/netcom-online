@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
      int sockfd, newsockfd, portno;
      socklen_t clilen;
      char buffer[256];
-     scanf("%s", command);
+     //scanf("%s", command);
      struct sockaddr_in serv_addr, cli_addr;
      int n;
      if (argc < 2) {
@@ -37,28 +37,36 @@ int main(int argc, char *argv[])
      if (bind(sockfd, (struct sockaddr *) &serv_addr,
               sizeof(serv_addr)) < 0)
               error("ERROR on binding");
+              
+        listen(sockfd,5);
+        clilen = sizeof(cli_addr);
+        newsockfd = accept(sockfd,
+                 (struct sockaddr *) &cli_addr,
+                 &clilen);
+        if (newsockfd < 0)
+          error("ERROR on accept");
      do
      {
-         listen(sockfd,5);
-         clilen = sizeof(cli_addr);
-         newsockfd = accept(sockfd,
-                     (struct sockaddr *) &cli_addr,
-                     &clilen);
-         if (newsockfd < 0)
-              error("ERROR on accept");
+         
          bzero(buffer,256);
          n = read(newsockfd,buffer,255);
          if (n < 0) error("ERROR reading from socket");
          printf("Here is the message: %s\n",buffer);
          n = write(newsockfd,"I got your message",18);
+         
+         int exit_cmd = 0;
+         
          if (n < 0) error("ERROR writing to socket");
-         if (strcmp( buffer, "exit") == 0 )
+         if( atoi(buffer) == exit_cmd)
+         //if (strcmp( buffer, "exit") == 0 )
          {
             printf("\nClosing Connection!\n");
-            close(newsockfd);
-            close(sockfd);
+            
+            
          }
 
      }while(n!=0);
+     close(newsockfd);
+     close(sockfd);
      return 0;
 }
