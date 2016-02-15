@@ -45,6 +45,7 @@ int main(int argc, char *argv[])
                  &clilen);
         if (newsockfd < 0)
           error("ERROR on accept");
+          
      do
      {
          
@@ -61,7 +62,7 @@ int main(int argc, char *argv[])
          //if (strcmp( buffer, "exit") == 0 )
          {
             printf("\nClosing Connection!\n");
-            
+            n = 0;
             
          }
 
