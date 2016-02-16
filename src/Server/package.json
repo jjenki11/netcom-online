@@ -1,0 +1,23 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node_tcp_server.js",
+  "dependencies": {
+    "commonjs": "0.0.1",
+    "events": "^1.1.0",
+    "express": "^4.13.4",
+    "http": "0.0.0",
+    "module": "0.0.1",
+    "net": "^1.0.2",
+    "socket.io": "^1.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "sudo node node_tcp_server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
