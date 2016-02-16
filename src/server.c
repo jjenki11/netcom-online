@@ -38,17 +38,17 @@ int main(int argc, char *argv[])
               sizeof(serv_addr)) < 0)
               error("ERROR on binding");
               
-        
-          
-     do
-     {
-        listen(sockfd,5);
+     listen(sockfd,5);
         clilen = sizeof(cli_addr);
         newsockfd = accept(sockfd,
                  (struct sockaddr *) &cli_addr,
                  &clilen);
         if (newsockfd < 0)
           error("ERROR on accept");
+          
+     do
+     {
+        
          bzero(buffer,256);
          n = read(newsockfd,buffer,255);
          if (n < 0) error("ERROR reading from socket");
@@ -61,6 +61,7 @@ int main(int argc, char *argv[])
          if( atoi(buffer) == exit_cmd)
          //if (strcmp( buffer, "exit") == 0 )
          {
+            
             printf("\nClosing Connection!\n");
             close(newsockfd);
             close(sockfd);
