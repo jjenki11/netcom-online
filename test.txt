@@ -1,1 +1,8 @@
-hi
+yo topher here are some instructions to running this monstrosity
+
+0. cd to Setup, run the shell script in there
+1. open terminal 1, cd to Server/Utils/c, run './server 7091'
+2. open terminal 2, cd to Server, run 'node node_tcp_server.js'
+3. open terminal 3, cd to Server/Utils/c, run './client localhost 7090'
+4. from terminal 3, send message of 0 - this should close both servers running in terminal 1 and terminal 2.
+
